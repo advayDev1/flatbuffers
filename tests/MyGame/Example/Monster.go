@@ -75,6 +75,14 @@ func (rcv *Monster) InventoryLength() int {
 	return 0
 }
 
+func (rcv *Monster) InventoryBytes() []byte {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
+	if o != 0 {
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
+	}
+	return nil
+}
+
 func (rcv *Monster) Color() int8 {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(16))
 	if o != 0 {
@@ -192,6 +200,14 @@ func (rcv *Monster) TestnestedflatbufferLength() int {
 		return rcv._tab.VectorLen(o)
 	}
 	return 0
+}
+
+func (rcv *Monster) TestnestedflatbufferBytes() []byte {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(30))
+	if o != 0 {
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
+	}
+	return nil
 }
 
 func (rcv *Monster) Testempty(obj *Stat) *Stat {
